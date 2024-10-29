@@ -16,6 +16,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 
 - show restart modal after installing an already configured plugin
 - add long click modal for lock mechanism + management
+- update default dashboard layout
 
 ### Other Changes
 
