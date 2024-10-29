@@ -15,6 +15,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 ### UI Changes
 
 - add missing add section button to plugin config screens
+- update default dashboard layout
 
 ### Other Changes
 
