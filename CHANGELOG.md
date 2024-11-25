@@ -14,6 +14,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 
 ### UI Changes
 
+- updates to the `fi.json` language file (#2253) (@l1500s)
 - add missing add section button to plugin config screens
 - update default dashboard layout
 
