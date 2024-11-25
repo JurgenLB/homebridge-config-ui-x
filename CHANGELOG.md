@@ -32,6 +32,7 @@ Plugin developers:
 
 ### UI Changes
 
+- updates to the `fi.json` language file (#2253) (@l1500s)
 - add plugin config validation functionality
 - refactor status and child bridge widgets
 - update default dashboard layout
