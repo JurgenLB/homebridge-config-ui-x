@@ -2,7 +2,17 @@
 
 All notable changes to `homebridge-config-ui-x` will be documented in this file. This project tries to adhere to [Semantic Versioning](http://semver.org/).
 
-## BETA
+## v4.68.0 (2025-01-06)
+
+Happy 2025 to all our users! 🎉
+
+### ⚠️ Upcoming Deprecations:
+
+- The **next major version** `v5` of the Homebridge UI will drop support for:
+  - Node.js `v16` and earlier, so please update to `v18` or `v20` or `v22` - [more info on updating](https://github.com/homebridge/homebridge/wiki/How-To-Update-Node.js)
+  - Raspberry Pi devices running on the `armv6` architecture (like the Pi 1 and Pi Zero) - please update your hardware
+  - Instances using `pnpm` as the package manager - consider updating your Homebridge instance to use npm instead - [more info on updating](https://github.com/homebridge/homebridge-apt-pkg/blob/latest/README.md#using-apt)
+- Note that these are not requirements for UI `v4.68.0`
 
 ### UI Changes
 
@@ -10,7 +20,43 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - further improvements to plugin search
 - implement and allow switching to scoped plugins
 - merge plugin info and verified modals
+  - condensing plugin card into title + three lines of description
 - consistent formatting of child bridge names across the ui
+- general improvements across the ui
+  - status page:
+    - individual widget setting form design made consistent with other forms
+    - added pairing status to qr code widget
+  - plugins page:
+    - visual improvements to plugin child bridge settings modal
+    - allow plugins to disable/enable the save button in custom uis (see below section)
+  - accessories page:
+    - changed accessory spanner icon to info icon (more descriptive)
+    - accessory info modal redesigned and provides more info where possible like the accessory UUID (including a link to remove from the cache)
+    - added support modal with some info about rooms and accessories (visible on desktop)
+  - json config page:
+    - redesigned restore modal to be more consistent with other modals
+  - settings page:
+    - chevron icons replaced with arrow-right icons
+    - removed restore modal from settings page and is accessible from the backup modal
+    - backup modal redesigned to be more consistent with other modals
+    - added new display -> menu mode setting which allows keeping the side menu from expanding out on desktop
+    - redesigned and improved accessories and bridges sections and modals
+  - users page:
+    - add user and edit user modals redesigned to be more consistent with other modals
+    - user card updated with icon buttons for edit/delete rather than text buttons
+
+### Plugin Custom UI Changes
+
+The UI has recently been updated with `@homebridge/plugin-ui-utils` @ `v2.0.0`, which includes a new feature to allow plugin developers to dynamically enable and disable the `Save` button in the custom UI modal.
+Two new methods have been added for this purpose:
+
+- `homebridge.disableSaveButton()`
+- `homebridge.enableSaveButton()`
+
+Developers: to maintain compatibility with older versions of the Homebridge UI, it is recommended to check if the methods exist before calling them in your custom UIs:
+
+- `homebridge.disableSaveButton?.()`
+- `homebridge.enableSaveButton?.()`
 
 ### Other Changes
 
@@ -24,14 +70,6 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - `@homebridge/plugin-ui-utils` @ `v2.0.0`
 
 ## v4.67.0 (2024-12-28)
-
-### ⚠️ Upcoming Deprecations:
-
-- The **next major version** `v5` of the Homebridge UI will drop support for:
-  - Node.js `v16` and earlier, so please update to `v18` or `v20` or `v22` - [more info on updating](https://github.com/homebridge/homebridge/wiki/How-To-Update-Node.js)
-  - Raspberry Pi devices running on the `armv6` architecture (like the Pi 1 and Pi Zero) - please update your hardware
-  - Instances using `pnpm` as the package manager - consider updating your Homebridge instance to use npm instead - [more info on updating](https://github.com/homebridge/homebridge-apt-pkg/blob/latest/README.md#using-apt)
-- Note that these are not requirements for UI `v4.67.0`
 
 ### UI Changes
 
