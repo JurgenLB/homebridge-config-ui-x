@@ -5,15 +5,15 @@
   <div class="d-flex flex-wrap w-100 px-2">
     <ul class="list-group w-100 gridster-item-content">
       @for (bridge of childBridges; track bridge) {
-      <li class="list-group-item border-0 px-2 d-flex flex-row justify-content-between">
+      <li class="list-group-item border-0 px-2 pb-1 d-flex flex-row justify-content-between">
         <div class="flex-child">
           <i
-            class="fas fa-fw mr-1"
+            class="fas fa-fw fa-lg mr-1"
             [ngClass]="{
-            'fa-bridge-circle-check green-text': bridge.status === 'ok',
-            'fa-bridge-circle-exclamation text-warning': bridge.status === 'pending',
-            'fa-bridge-circle-xmark red-text': bridge.status === 'down'
-          }"
+              'fa-bridge-circle-check green-text': bridge.status === 'ok',
+              'fa-bridge-circle-exclamation text-warning': bridge.status === 'pending',
+              'fa-bridge-circle-xmark red-text': bridge.status === 'down'
+            }"
           ></i>
           {{ bridge.name }}
         </div>
@@ -27,12 +27,12 @@
             container="body"
             openDelay="150"
             triggers="hover"
-            [placement]="['left', 'top', 'bottom']"
+            placement="left"
           >
-            <i class="fa-fw icon-button fas fa-fw fa-power-off"></i>
+            <i class="fa-fw icon-button fas fa-fw fa-lg fa-power-off"></i>
           </a>
           } @if (bridge.restartInProgress) {
-          <i class="fas fa-fw fa-spinner fa-pulse"></i>
+          <i class="fas fa-fw fa-lg fa-spinner fa-pulse"></i>
           }
         </div>
       </li>
