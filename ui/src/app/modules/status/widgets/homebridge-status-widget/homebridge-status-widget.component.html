@@ -1,16 +1,18 @@
 <div class="flex-column d-flex align-items-stretch h-100 w-100 pb-1">
   <div class="drag-handler p-2" [ngClass]="{ 'widget-cursor': widget.draggable }">Homebridge</div>
-  <div class="d-flex flex-wrap w-100 pr-3 pl-2 justify-content-start gridster-item-content overflow-auto no-scrollbars">
-    <div class="hb-status-item d-flex flex-row" style="min-width: max(25%, 225px)">
+  <div
+    class="d-flex flex-wrap w-100 pr-3 pl-2 mt-2 justify-content-start gridster-item-content overflow-auto no-scrollbars align-items-center"
+  >
+    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 225px)">
       <div class="d-flex">
-        <div class="mb-0 px-3 py-1 hb-status-icon">
+        <div class="mb-0 mx-2 d-flex align-items-center">
           <i
-            class="fas fa-fw primary-text"
+            class="fas fa-fw fa-lg"
             [ngClass]="{
-            'fa-exclamation-circle red-text': homebridgeStatus.status === 'down',
-            'fa-cog fa-spin': homebridgeStatus.status === 'pending',
-            'fa-check-circle': homebridgeStatus.status === 'up'
-          }"
+              'fa-exclamation-circle red-text': homebridgeStatus.status === 'down',
+              'fa-cog fa-spin primary-text': homebridgeStatus.status === 'pending',
+              'fa-check-circle green-text': homebridgeStatus.status === 'up'
+            }"
           ></i>
         </div>
         <div class="align-self-center">
@@ -19,13 +21,13 @@
           </a>
           <br />
           @if (homebridgeStatus.status === 'pending') {
-          <span class="grey-text"> {{ 'status.services.label_starting' | translate }} </span>
+          <span class="grey-text small"> {{ 'status.services.label_starting' | translate }} </span>
           } @if (homebridgeStatus.status === 'up' && !widget.hidePort) {
-          <span class="grey-text">
+          <span class="grey-text small">
             {{ 'status.services.label_running_on_port' | translate: { port: homebridgeStatus.port } }}
           </span>
           } @if (homebridgeStatus.status === 'up' && widget.hidePort) {
-          <span class="grey-text">
+          <span class="grey-text small">
             {{ 'status.services.label_running' | translate: { port: homebridgeStatus.port } }}
           </span>
           } @if (homebridgeStatus.status !== 'up' && homebridgeStatus.status !== 'pending') {
@@ -37,15 +39,15 @@
       </div>
     </div>
 
-    <div class="hb-status-item d-flex flex-row" style="min-width: max(25%, 225px)">
+    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 225px)">
       <div class="d-flex">
-        <div class="mb-0 px-3 py-1 hb-status-icon">
+        <div class="mb-0 mx-2 d-flex align-items-center">
           @if (!homebridgePkg.installedVersion) {
-          <i class="fas fa-fw fa-cog fa-spin primary-text"></i>
+          <i class="fas fa-fw fa-lg fa-cog fa-spin primary-text"></i>
           } @if (homebridgePkg.installedVersion && !homebridgePkg.updateAvailable) {
-          <i class="fas fa-fw fa-check-circle primary-text"></i>
+          <i class="fas fa-fw fa-lg fa-check-circle green-text"></i>
           } @if (homebridgePkg.installedVersion && homebridgePkg.updateAvailable) {
-          <i class="fas fa-fw fa-arrow-alt-circle-up primary-text"></i>
+          <i class="fas fa-fw fa-lg fa-arrow-alt-circle-up orange-text"></i>
           }
         </div>
         <div class="align-self-center">
@@ -60,7 +62,7 @@
           <span>Homebridge</span>
           }
           <br />
-          <span class="grey-text">
+          <span class="grey-text small">
             @if (!homebridgePkg.installedVersion) {
             <span> {{ 'status.homebridge.checking' | translate }} </span>
             } @if (homebridgePkg.installedVersion && !homebridgePkg.updateAvailable) {
@@ -79,15 +81,15 @@
       </div>
     </div>
 
-    <div class="hb-status-item d-flex flex-row" style="min-width: max(25%, 225px)">
+    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 225px)">
       <div class="d-flex">
-        <div class="mb-0 px-3 py-1 hb-status-icon">
+        <div class="mb-0 mx-2 d-flex align-items-center">
           @if (!homebridgeUiPkg.installedVersion) {
-          <i class="fas fa-fw fa-cog fa-spin primary-text"></i>
+          <i class="fas fa-fw fa-lg fa-cog fa-spin primary-text"></i>
           } @if (homebridgeUiPkg.installedVersion && !homebridgeUiPkg.updateAvailable) {
-          <i class="fas fa-fw fa-check-circle primary-text"></i>
+          <i class="fas fa-fw fa-lg fa-check-circle green-text"></i>
           } @if (homebridgeUiPkg.installedVersion && homebridgeUiPkg.updateAvailable) {
-          <i class="fas fa-fw fa-arrow-alt-circle-up primary-text"></i>
+          <i class="fas fa-fw fa-lg fa-arrow-alt-circle-up orange-text"></i>
           }
         </div>
         <div class="align-self-center">
@@ -102,7 +104,7 @@
           <span>Homebridge UI</span>
           }
           <br />
-          <span class="grey-text">
+          <span class="grey-text small">
             @if (!homebridgeUiPkg.installedVersion) {
             <span> {{ 'status.homebridge.checking' | translate }} </span>
             } @if (homebridgeUiPkg.installedVersion && !homebridgeUiPkg.updateAvailable) {
@@ -121,15 +123,15 @@
       </div>
     </div>
 
-    <div class="hb-status-item d-flex flex-row" style="min-width: max(25%, 225px)">
+    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 225px)">
       <div class="d-flex">
-        <div class="mb-0 px-3 py-1 hb-status-icon">
+        <div class="mb-0 mx-2 d-flex align-items-center">
           @if (!homebridgePluginStatusDone) {
-          <i class="fas fa-fw fa-cog fa-spin primary-text"></i>
+          <i class="fas fa-fw fa-lg fa-cog fa-spin primary-text"></i>
           } @if (homebridgePluginStatusDone && homebridgePluginStatus.length) {
-          <i class="fas fa-fw fa-arrow-alt-circle-up primary-text"></i>
+          <i class="fas fa-fw fa-lg fa-arrow-alt-circle-up orange-text"></i>
           } @if (homebridgePluginStatusDone && !homebridgePluginStatus.length) {
-          <i class="fas fa-fw fa-check-circle primary-text"></i>
+          <i class="fas fa-fw fa-lg fa-check-circle green-text"></i>
           }
         </div>
         <div class="align-self-center">
@@ -138,14 +140,14 @@
           </a>
           <br />
           @if (!homebridgePluginStatusDone) {
-          <span class="grey-text"> {{ 'status.homebridge.checking' | translate }} </span>
+          <span class="grey-text small"> {{ 'status.homebridge.checking' | translate }} </span>
           } @if (homebridgePluginStatusDone && homebridgePluginStatus.length) {
           <a routerLink="/plugins" class="primary-text">
             {{ homebridgePluginStatus.length }} {{ homebridgePluginStatus.length === 1 ? ('status.plugin_out_of_date' |
             translate) : ('status.plugins_out_of_date' | translate) }}
           </a>
           } @if (homebridgePluginStatusDone && !homebridgePluginStatus.length) {
-          <span class="grey-text"> {{ 'status.homebridge.up_to_date' | translate }} </span>
+          <span class="grey-text small"> {{ 'status.homebridge.up_to_date' | translate }} </span>
           }
         </div>
       </div>
