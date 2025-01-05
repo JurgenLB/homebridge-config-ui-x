@@ -33,6 +33,7 @@ Plugin developers:
 ### UI Changes
 
 - add plugin config validation functionality
+- refactor status and child bridge widgets
 
 ### Other Changes
 
