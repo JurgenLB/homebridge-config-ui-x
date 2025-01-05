@@ -1,0 +1,145 @@
+<div class="flex-column d-flex align-items-stretch h-100 w-100 pb-3">
+  <div class="drag-handler p-2" [ngClass]="{ 'widget-cursor': widget.draggable }">
+    {{ 'status.services.updates' | translate }}
+  </div>
+  <div class="d-flex flex-wrap w-100 mb-2 justify-content-start gridster-item-content overflow-auto no-scrollbars">
+    <div class="hb-status-item d-flex flex-row mt-2" style="min-width: max(25%, 175px)">
+      <div class="d-flex">
+        <div class="mb-0 px-3 hb-status-icon d-flex align-items-center">
+          @if (!homebridgePkg.installedVersion) {
+          <i class="fas fa-fw fa-cog fa-spin primary-text"></i>
+          } @if (homebridgePkg.installedVersion && !homebridgePkg.updateAvailable) {
+          <i class="fas fa-fw fa-check-circle primary-text"></i>
+          } @if (homebridgePkg.installedVersion && homebridgePkg.updateAvailable) {
+          <i class="fas fa-fw fa-arrow-alt-circle-up primary-text"></i>
+          }
+        </div>
+        <div class="align-self-center">
+          @if (homebridgePkg.installedVersion) {
+          <a
+            href="javascript:void(0)"
+            (click)="$plugin.installAlternateVersion(homebridgePkg)"
+            class="card-link card-link-title"
+          >
+            Homebridge
+          </a>
+          } @if (!homebridgePkg.installedVersion) { Homebridge }
+          <br />
+          <span class="grey-text small">
+            @if (!homebridgePkg.installedVersion) { {{ 'status.homebridge.checking' | translate }} } @if
+            (homebridgePkg.installedVersion && !homebridgePkg.updateAvailable) { {{ 'status.homebridge.up_to_date' |
+            translate }} } @if (homebridgePkg.installedVersion && homebridgePkg.updateAvailable) {
+            <a
+              href="javascript:void(0)"
+              (click)="$plugin.upgradeHomebridge(homebridgePkg, homebridgePkg.updateTag || 'latest')"
+              class="primary-text"
+            >
+              {{ 'status.plugin_out_of_date' | translate }}
+            </a>
+            }
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="hb-status-item d-flex flex-row mt-2" style="min-width: max(25%, 175px)">
+      <div class="d-flex">
+        <div class="mb-0 px-3 hb-status-icon d-flex align-items-center">
+          @if (!homebridgeUiPkg.installedVersion) {
+          <i class="fas fa-fw fa-cog fa-spin primary-text"></i>
+          } @if (homebridgeUiPkg.installedVersion && !homebridgeUiPkg.updateAvailable) {
+          <i class="fas fa-fw fa-check-circle primary-text"></i>
+          } @if (homebridgeUiPkg.installedVersion && homebridgeUiPkg.updateAvailable) {
+          <i class="fas fa-fw fa-arrow-alt-circle-up primary-text"></i>
+          }
+        </div>
+        <div class="align-self-center">
+          @if (homebridgeUiPkg.installedVersion) {
+          <a
+            href="javascript:void(0)"
+            (click)="$plugin.installAlternateVersion(homebridgeUiPkg)"
+            class="card-link card-link-title"
+            >Homebridge UI</a
+          >
+          } @if (!homebridgeUiPkg.installedVersion) { Homebridge UI }
+          <br />
+          <span class="grey-text small">
+            @if (!homebridgeUiPkg.installedVersion) { {{ 'status.homebridge.checking' | translate }} } @if
+            (homebridgeUiPkg.installedVersion && !homebridgeUiPkg.updateAvailable) { {{ 'status.homebridge.up_to_date' |
+            translate }} } @if (homebridgeUiPkg.installedVersion && homebridgeUiPkg.updateAvailable) {
+            <a
+              href="javascript:void(0)"
+              (click)="$plugin.upgradeHomebridge(homebridgeUiPkg, homebridgeUiPkg.updateTag || 'latest')"
+              class="primary-text"
+            >
+              {{ 'status.plugin_out_of_date' | translate }}
+            </a>
+            }
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="hb-status-item d-flex flex-row mt-2" style="min-width: max(25%, 175px)">
+      <div class="d-flex">
+        <div class="mb-0 px-3 hb-status-icon d-flex align-items-center">
+          @if (!homebridgePluginStatusDone) {
+          <i class="fas fa-fw fa-cog fa-spin primary-text"></i>
+          } @if (homebridgePluginStatusDone && homebridgePluginStatus.length) {
+          <i class="fas fa-fw fa-arrow-alt-circle-up primary-text"></i>
+          } @if (homebridgePluginStatusDone && !homebridgePluginStatus.length) {
+          <i class="fas fa-fw fa-check-circle primary-text"></i>
+          }
+        </div>
+        <div class="align-self-center">
+          <a href="javascript:void(0)" routerLink="/plugins" class="card-link card-link-title">
+            {{ 'menu.label_plugins' | translate }}
+          </a>
+          <br />
+          @if (!homebridgePluginStatusDone) {
+          <span class="grey-text small"> {{ 'status.homebridge.checking' | translate }} </span>
+          } @if (homebridgePluginStatusDone && homebridgePluginStatus.length) {
+          <a routerLink="/plugins" class="primary-text small">
+            {{ homebridgePluginStatus.length }} {{ homebridgePluginStatus.length === 1 ? ('status.plugin_out_of_date' |
+            translate) : ('status.plugins_out_of_date' | translate) }}
+          </a>
+          } @if (homebridgePluginStatusDone && !homebridgePluginStatus.length) {
+          <span class="grey-text small"> {{ 'status.homebridge.up_to_date' | translate }} </span>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="hb-status-item d-flex flex-row mt-2" style="min-width: max(25%, 175px)">
+      <div class="d-flex">
+        <div class="mb-0 px-3 hb-status-icon d-flex align-items-center">
+          @if (!nodejsStatusDone) {
+          <i class="fas fa-fw fa-cog fa-spin primary-text"></i>
+          } @if (nodejsStatusDone && nodejsInfo.updateAvailable && !nodejsInfo.showNodeUnsupportedWarning &&
+          !serverInfo.homebridgeRunningInSynologyPackage) {
+          <i class="fas fa-fw fa-arrow-alt-circle-up primary-text"></i>
+          } @if (nodejsStatusDone && nodejsInfo.showNodeUnsupportedWarning && !nodejsInfo.updateAvailable) {
+          <i class="fas fa-fw fa-exclamation-circle primary-text"></i>
+          } @if (nodejsStatusDone && !nodejsInfo.updateAvailable && !nodejsInfo.showNodeUnsupportedWarning) {
+          <i class="fas fa-fw fa-check-circle primary-text"></i>
+          }
+        </div>
+        <div class="align-self-center">
+          Node.js
+          <br />
+          @if (!nodejsStatusDone) {
+          <span class="grey-text small"> {{ 'status.homebridge.checking' | translate }} </span>
+          } @if (nodejsStatusDone && nodejsInfo.updateAvailable && !nodejsInfo.showNodeUnsupportedWarning &&
+          !serverInfo.homebridgeRunningInSynologyPackage) {
+          <a href="javascript:void(0)" (click)="nodeUpdateModal()" class="primary-text small">
+            {{'status.plugin_out_of_date' | translate }}
+          </a>
+          } @if (nodejsStatusDone && nodejsInfo.showNodeUnsupportedWarning && !nodejsInfo.updateAvailable) {
+          <a href="javascript:void(0)" (click)="nodeUnsupportedModal()" class="primary-text small">
+            {{ 'status.widget.info.node_unsupp' | translate }}
+          </a>
+          } @if (nodejsStatusDone && !nodejsInfo.updateAvailable && !nodejsInfo.showNodeUnsupportedWarning) {
+          <span class="grey-text small"> {{ 'status.homebridge.up_to_date' | translate }} </span>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
