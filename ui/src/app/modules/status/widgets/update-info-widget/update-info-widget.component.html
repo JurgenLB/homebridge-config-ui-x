@@ -1,47 +1,13 @@
-<div class="flex-column d-flex align-items-stretch h-100 w-100 pb-1">
-  <div class="drag-handler p-2" [ngClass]="{ 'widget-cursor': widget.draggable }">Homebridge</div>
+<div class="flex-column d-flex align-items-stretch h-100 w-100 pb-2">
+  <div class="drag-handler p-2" [ngClass]="{ 'widget-cursor': widget.draggable }">
+    {{ 'status.services.updates' | translate }}
+  </div>
   <div
-    class="d-flex flex-wrap w-100 pr-3 pl-2 mt-2 justify-content-start gridster-item-content overflow-auto no-scrollbars align-items-center"
+    class="d-flex flex-wrap w-100 mt-1 justify-content-start gridster-item-content overflow-auto no-scrollbars align-items-center"
   >
-    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 225px)">
-      <div class="d-flex">
-        <div class="mb-0 mx-2 d-flex align-items-center">
-          <i
-            class="fas fa-fw fa-lg"
-            [ngClass]="{
-              'fa-exclamation-circle red-text': homebridgeStatus.status === 'down',
-              'fa-cog fa-spin primary-text': homebridgeStatus.status === 'pending',
-              'fa-check-circle green-text': homebridgeStatus.status === 'up'
-            }"
-          ></i>
-        </div>
-        <div class="align-self-center">
-          <a href="javascript:void(0)" routerLink="/logs" class="card-link card-link-title">
-            {{ 'menu.label_status' | translate }}
-          </a>
-          <br />
-          @if (homebridgeStatus.status === 'pending') {
-          <span class="grey-text small"> {{ 'status.services.label_starting' | translate }} </span>
-          } @if (homebridgeStatus.status === 'up' && !widget.hidePort) {
-          <span class="grey-text small">
-            {{ 'status.services.label_running_on_port' | translate: { port: homebridgeStatus.port } }}
-          </span>
-          } @if (homebridgeStatus.status === 'up' && widget.hidePort) {
-          <span class="grey-text small">
-            {{ 'status.services.label_running' | translate: { port: homebridgeStatus.port } }}
-          </span>
-          } @if (homebridgeStatus.status !== 'up' && homebridgeStatus.status !== 'pending') {
-          <a routerLink="/logs" class="primary-text">
-            {{ 'status.services.label_not_running' | translate }} - {{ 'menu.tooltip_view_logs' | translate }}
-          </a>
-          }
-        </div>
-      </div>
-    </div>
-
-    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 225px)">
-      <div class="d-flex">
-        <div class="mb-0 mx-2 d-flex align-items-center">
+    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 250px)">
+      <div class="d-flex px-3">
+        <div class="mb-0 d-flex align-items-center">
           @if (!homebridgePkg.installedVersion) {
           <i class="fas fa-fw fa-lg fa-cog fa-spin primary-text"></i>
           } @if (homebridgePkg.installedVersion && !homebridgePkg.updateAvailable) {
@@ -50,7 +16,7 @@
           <i class="fas fa-fw fa-lg fa-arrow-alt-circle-up orange-text"></i>
           }
         </div>
-        <div class="align-self-center">
+        <div class="align-self-center px-3">
           @if (homebridgePkg.installedVersion) {
           <a
             href="javascript:void(0)"
@@ -80,10 +46,9 @@
         </div>
       </div>
     </div>
-
-    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 225px)">
-      <div class="d-flex">
-        <div class="mb-0 mx-2 d-flex align-items-center">
+    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 250px)">
+      <div class="d-flex px-3">
+        <div class="mb-0 d-flex align-items-center">
           @if (!homebridgeUiPkg.installedVersion) {
           <i class="fas fa-fw fa-lg fa-cog fa-spin primary-text"></i>
           } @if (homebridgeUiPkg.installedVersion && !homebridgeUiPkg.updateAvailable) {
@@ -92,7 +57,7 @@
           <i class="fas fa-fw fa-lg fa-arrow-alt-circle-up orange-text"></i>
           }
         </div>
-        <div class="align-self-center">
+        <div class="align-self-center px-3">
           @if (homebridgeUiPkg.installedVersion) {
           <a
             href="javascript:void(0)"
@@ -122,10 +87,9 @@
         </div>
       </div>
     </div>
-
-    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 225px)">
-      <div class="d-flex">
-        <div class="mb-0 mx-2 d-flex align-items-center">
+    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 250px)">
+      <div class="d-flex px-3">
+        <div class="mb-0 d-flex align-items-center">
           @if (!homebridgePluginStatusDone) {
           <i class="fas fa-fw fa-lg fa-cog fa-spin primary-text"></i>
           } @if (homebridgePluginStatusDone && homebridgePluginStatus.length) {
@@ -134,7 +98,7 @@
           <i class="fas fa-fw fa-lg fa-check-circle green-text"></i>
           }
         </div>
-        <div class="align-self-center">
+        <div class="align-self-center px-3">
           <a href="javascript:void(0)" routerLink="/plugins" class="card-link card-link-title">
             {{ 'menu.label_plugins' | translate }}
           </a>
@@ -147,6 +111,40 @@
             translate) : ('status.plugins_out_of_date' | translate) }}
           </a>
           } @if (homebridgePluginStatusDone && !homebridgePluginStatus.length) {
+          <span class="grey-text small"> {{ 'status.homebridge.up_to_date' | translate }} </span>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="hb-status-item d-flex flex-row mb-2" style="min-width: max(25%, 250px)">
+      <div class="d-flex px-3">
+        <div class="mb-0 d-flex align-items-center">
+          @if (!nodejsStatusDone) {
+          <i class="fas fa-fw fa-lg fa-cog fa-spin primary-text"></i>
+          } @if (nodejsStatusDone && nodejsInfo.updateAvailable && !nodejsInfo.showNodeUnsupportedWarning &&
+          !serverInfo.homebridgeRunningInSynologyPackage) {
+          <i class="fas fa-fw fa-lg fa-arrow-alt-circle-up orange-text"></i>
+          } @if (nodejsStatusDone && nodejsInfo.showNodeUnsupportedWarning && !nodejsInfo.updateAvailable) {
+          <i class="fas fa-fw fa-lg fa-exclamation-circle orange-text"></i>
+          } @if (nodejsStatusDone && !nodejsInfo.updateAvailable && !nodejsInfo.showNodeUnsupportedWarning) {
+          <i class="fas fa-fw fa-lg fa-check-circle green-text"></i>
+          }
+        </div>
+        <div class="align-self-center px-3">
+          Node.js
+          <br />
+          @if (!nodejsStatusDone) {
+          <span class="grey-text small"> {{ 'status.homebridge.checking' | translate }} </span>
+          } @if (nodejsStatusDone && nodejsInfo.updateAvailable && !nodejsInfo.showNodeUnsupportedWarning &&
+          !serverInfo.homebridgeRunningInSynologyPackage) {
+          <a href="javascript:void(0)" (click)="nodeUpdateModal()" class="primary-text small">
+            {{'status.plugin_out_of_date' | translate }}
+          </a>
+          } @if (nodejsStatusDone && nodejsInfo.showNodeUnsupportedWarning && !nodejsInfo.updateAvailable) {
+          <a href="javascript:void(0)" (click)="nodeUnsupportedModal()" class="primary-text small">
+            {{ 'status.widget.info.node_unsupp' | translate }}
+          </a>
+          } @if (nodejsStatusDone && !nodejsInfo.updateAvailable && !nodejsInfo.showNodeUnsupportedWarning) {
           <span class="grey-text small"> {{ 'status.homebridge.up_to_date' | translate }} </span>
           }
         </div>
