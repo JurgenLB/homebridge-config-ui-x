@@ -34,6 +34,10 @@ Plugin developers:
 
 - add plugin config validation functionality
 
+### Other Changes
+
+- retire use of `pnpm` and code references
+
 ### Homebridge Dependencies
 
 - `@homebridge/hap-client` @ `v2.0.5`
