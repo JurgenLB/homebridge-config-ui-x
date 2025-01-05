@@ -515,11 +515,7 @@ export class PluginsService {
     const installOptions: Array<string> = []
 
     // Check to see if custom plugin path is using a package.json file
-    if (
-      installPath === this.configService.customPluginPath
-      && !(action === 'uninstall' && this.configService.usePnpm)
-      && await pathExists(resolve(installPath, '../package.json'))
-    ) {
+    if (installPath === this.configService.customPluginPath && await pathExists(resolve(installPath, '../package.json'))) {
       installOptions.push('--save')
     }
 
@@ -1234,8 +1230,8 @@ export class PluginsService {
         this.logger.error('npm install -g npm')
       }
     }
-    // Linux and macOS don't require the full path to npm / pnpm
-    return this.configService.usePnpm ? ['pnpm'] : ['npm']
+    // Linux and macOS don't require the full path to npm
+    return ['npm']
   }
 
   /**
@@ -1463,13 +1459,8 @@ export class PluginsService {
       npm_config_update_notifier: 'false',
       npm_config_prefer_online: 'true',
       npm_config_foreground_scripts: 'true',
+      npm_config_loglevel: 'error',
     })
-
-    if (!this.configService.usePnpm) {
-      Object.assign(env, {
-        npm_config_loglevel: 'error',
-      })
-    }
 
     // Set global prefix for unix based systems
     if (command.includes('-g') && basename(cwd) === 'lib') {
