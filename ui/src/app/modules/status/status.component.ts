@@ -32,7 +32,7 @@ export class StatusComponent implements OnInit, OnDestroy {
   $auth = inject(AuthService)
   private $modal = inject(NgbModal)
   private $notification = inject(NotificationService)
-  $settings = inject(SettingsService)
+  private $settings = inject(SettingsService)
   private $ws = inject(WsService)
 
   public saveWidgetsEvent = new Subject()
@@ -126,7 +126,16 @@ export class StatusComponent implements OnInit, OnDestroy {
         if (!layout.length) {
           return this.resetLayout()
         }
-        this.setLayout(layout)
+        this.setLayout(layout.map((item: any) => {
+          // Some name changes
+          if (item.component === 'ChildBridgeWidgetComponent') {
+            item.component = 'HomekitBridgesWidgetComponent'
+          }
+          if (item.component === 'HomebridgeStatusWidgetComponent' || item.component === 'UpdateCentreWidgetComponent') {
+            item.component = 'UpdateInfoWidgetComponent'
+          }
+          return item
+        }))
       },
     )
   }
