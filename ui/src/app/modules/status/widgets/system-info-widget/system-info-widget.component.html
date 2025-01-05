@@ -55,20 +55,7 @@
         </tr>
         <tr>
           <th scope="row" class="text-nowrap">{{ 'status.widget.info.nodejs_version' | translate }}</th>
-          <td class="grey-text">
-            @if (nodejsInfo.updateAvailable && !nodejsInfo.showNodeUnsupportedWarning &&
-            !serverInfo.homebridgeRunningInSynologyPackage) {
-            <a href="javascript:void(0)" class="system-info-link" (click)="nodeUpdateModal()">
-              <i class="primary-text fas fa-fw fa-circle-up"></i> {{ serverInfo.nodeVersion }}
-            </a>
-            } @if (nodejsInfo.showNodeUnsupportedWarning && !nodejsInfo.updateAvailable) {
-            <a href="javascript:void(0)" class="system-info-link" (click)="nodeUnsupportedModal()">
-              <i class="primary-text fas fa-fw fa-exclamation-circle"></i> {{ serverInfo.nodeVersion }}
-            </a>
-            } @if (!nodejsInfo.showNodeUnsupportedWarning && !nodejsInfo.updateAvailable) {
-            <span> {{ serverInfo.nodeVersion }} </span>
-            }
-          </td>
+          <td class="grey-text">{{ serverInfo.nodeVersion }}</td>
         </tr>
         <tr>
           <th scope="row" class="text-nowrap">{{ 'status.widget.info.nodejs_path' | translate }}</th>
