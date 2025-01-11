@@ -1,4 +1,4 @@
-/* Homebridge UI Themes */
+@use 'sass:color';
 
 @mixin make-theme($name, $primary, $primary-dark) {
   .config-ui-x-#{$name} {
@@ -49,6 +49,7 @@
 
             .title {
               color: #ffffff;
+              font-weight: 300;
             }
           }
         }
@@ -70,7 +71,15 @@
 
     .btn-primary,
     .btn-default {
-      @extend .btn-#{$name} !optional;
+      background-color: $primary !important;
+      border-color: $primary !important;
+
+      &:hover,
+      &:focus {
+        background-color: color.adjust($primary, $lightness: -5%) !important;
+        border-color: color.adjust($primary, $lightness: -5%) !important;
+        transition: background-color 0.25s;
+      }
     }
 
     .badge-primary {
@@ -181,6 +190,25 @@
         width: 60px;
         height: 60px;
       }
+    }
+
+    .accordion {
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      border-radius: 0.5rem;
+
+      .card-header {
+        background: #ffffff;
+      }
+    }
+
+    .accordion-header {
+      border-radius: 0.5rem;
+      --bs-card-border-radius: 0 !important;
+    }
+
+    .accordion-body {
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
 }
