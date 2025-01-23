@@ -42,6 +42,7 @@ Plugin developers:
 - add lighting mode option for terminal and log widgets
   - only available when the UI is already in light mode
 - fix long press on mobile devices
+- control fan rotation direction from the ui
 
 ### Other Changes
 
