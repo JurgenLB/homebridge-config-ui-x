@@ -410,7 +410,6 @@ export class PluginsService {
       plugin.latestVersion = pkg['dist-tags'] ? pkg['dist-tags'].latest : undefined
       plugin.lastUpdated = pkg.time.modified
       plugin.updateAvailable = false
-      plugin.updateTag = null
       plugin.links = {
         npm: `https://www.npmjs.com/package/${plugin.name}`,
         homepage: pkg.homepage,
@@ -521,6 +520,7 @@ export class PluginsService {
 
     // Prepare flags for npm command
     const installOptions: Array<string> = []
+    let npmPluginLabel = pluginAction.name
 
     // Check to see if custom plugin path is using a package.json file
     if (installPath === this.configService.customPluginPath && await pathExists(resolve(installPath, '../package.json'))) {
@@ -535,7 +535,11 @@ export class PluginsService {
       installOptions.push('-g')
     }
 
-    const npmPluginLabel = action === 'uninstall' ? pluginAction.name : `${pluginAction.name}@${pluginAction.version}`
+    // If installing, set --omit=dev to prevent installing devDependencies
+    if (action === 'install') {
+      installOptions.push('--omit=dev')
+      npmPluginLabel = `${pluginAction.name}@${pluginAction.version}`
+    }
 
     try {
       await this.runNpmCommand(
@@ -609,7 +613,6 @@ export class PluginsService {
         homebridge.latestVersion = versions.tags[installedTag]
         homebridge.updateAvailable = true
         homebridge.updateEngines = versions.versions?.[homebridge.latestVersion]?.engines || null
-        homebridge.updateTag = installedTag
       }
     }
 
@@ -634,6 +637,7 @@ export class PluginsService {
 
     // Prepare flags for npm command
     const installOptions: Array<string> = []
+    installOptions.push('--omit=dev')
 
     // Check to see if custom plugin path is using a package.json file
     if (installPath === this.configService.customPluginPath && await pathExists(resolve(installPath, '../package.json'))) {
@@ -1351,7 +1355,6 @@ export class PluginsService {
       // Attempt to load from cache
       const fromCache = this.npmPluginCache.get(plugin.name)
       plugin.updateAvailable = false
-      plugin.updateTag = null
 
       // Restore from cache, or load from npm
       const pkg: IPackageJson = fromCache || (
@@ -1376,7 +1379,6 @@ export class PluginsService {
             plugin.latestVersion = versions.tags[installedTag]
             plugin.updateAvailable = true
             plugin.updateEngines = versions.versions?.[plugin.latestVersion]?.engines || null
-            plugin.updateTag = installedTag
           }
         }
       }
@@ -1401,7 +1403,6 @@ export class PluginsService {
       plugin.publicPackage = false
       plugin.latestVersion = null
       plugin.updateAvailable = false
-      plugin.updateTag = null
       plugin.links = {}
     }
     return plugin
