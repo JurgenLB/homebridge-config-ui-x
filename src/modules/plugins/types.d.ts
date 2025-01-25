@@ -16,7 +16,6 @@ export interface HomebridgePlugin {
     homebridge?: string
     node?: string
   }
-  updateTag?: string
   installPath?: string
   globalInstall?: boolean
   settingsSchema?: boolean
