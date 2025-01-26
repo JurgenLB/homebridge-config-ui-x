@@ -154,7 +154,7 @@ export class ServerService {
   public async restartServer() {
     this.logger.log('Homebridge restart request received.')
 
-    if (this.configService.serviceMode && !(await this.configService.uiRestartRequired() || await this.nodeVersionChanged())) {
+    if (!await this.configService.uiRestartRequired() && !await this.nodeVersionChanged()) {
       this.logger.log('UI/Bridge settings have not changed - only restarting Homebridge process.')
       // Restart homebridge by killing child process
       this.homebridgeIpcService.restartHomebridge()
@@ -288,11 +288,6 @@ export class ServerService {
    * Remove a device pairing
    */
   public async deleteDevicePairing(id: string, resetPairingInfo: boolean) {
-    if (!this.configService.serviceMode) {
-      this.logger.error('The reset paired bridge command is only available in service mode.')
-      throw new BadRequestException('This command is only available in service mode.')
-    }
-
     this.logger.warn(`Shutting down Homebridge before resetting paired bridge ${id}...`)
 
     // Wait for homebridge to stop
@@ -308,11 +303,6 @@ export class ServerService {
    * Remove multiple device pairings
    */
   public async deleteDevicesPairing(bridges: { id: string, resetPairingInfo: boolean }[]) {
-    if (!this.configService.serviceMode) {
-      this.logger.error('The reset multiple paired bridges command is only available in service mode.')
-      throw new BadRequestException('This command is only available in service mode.')
-    }
-
     this.logger.warn(`Shutting down Homebridge before resetting paired bridges ${bridges.map(x => x.id).join(', ')}...`)
 
     // Wait for homebridge to stop
@@ -334,11 +324,6 @@ export class ServerService {
    * Remove a device's accessories
    */
   public async deleteDeviceAccessories(id: string) {
-    if (!this.configService.serviceMode) {
-      this.logger.error('The remove bridge\'s accessories command is only available in service mode.')
-      throw new BadRequestException('This command is only available in service mode.')
-    }
-
     this.logger.warn(`Shutting down Homebridge before removing accessories for paired bridge ${id}...`)
 
     // Wait for homebridge to stop.
@@ -353,11 +338,6 @@ export class ServerService {
    * Remove multiple devices' accessories
    */
   public async deleteDevicesAccessories(bridges: { id: string }[]) {
-    if (!this.configService.serviceMode) {
-      this.logger.error('The remove bridges\' accessories command is only available in service mode.')
-      throw new BadRequestException('This command is only available in service mode.')
-    }
-
     this.logger.warn(`Shutting down Homebridge before removing accessories for paired bridges ${bridges.map(x => x.id).join(', ')}...`)
 
     // Wait for homebridge to stop.
@@ -400,11 +380,6 @@ export class ServerService {
    * Remove a single cached accessory
    */
   public async deleteCachedAccessory(uuid: string, cacheFile: string) {
-    if (!this.configService.serviceMode) {
-      this.logger.error('The remove cached accessory command is only available in service mode.')
-      throw new BadRequestException('This command is only available in service mode.')
-    }
-
     cacheFile = cacheFile || 'cachedAccessories'
 
     const cachedAccessoriesPath = resolve(this.configService.storagePath, 'accessories', cacheFile)
@@ -433,11 +408,6 @@ export class ServerService {
    * Remove multiple cached accessories
    */
   public async deleteCachedAccessories(accessories: { uuid: string, cacheFile: string }[]) {
-    if (!this.configService.serviceMode) {
-      this.logger.error('The remove cached accessories command is only available in service mode.')
-      throw new BadRequestException('This command is only available in service mode.')
-    }
-
     this.logger.warn(`Shutting down Homebridge before removing cached accessories ${accessories.map(x => x.uuid).join(', ')}.`)
 
     // Wait for homebridge to stop.
@@ -481,11 +451,6 @@ export class ServerService {
    * Clears the Homebridge Accessory Cache
    */
   public async deleteAllCachedAccessories() {
-    if (!this.configService.serviceMode) {
-      this.logger.error('The remove all cached accessories command is only available in service mode.')
-      throw new BadRequestException('This command is only available in service mode.')
-    }
-
     const cachedAccessoriesDir = join(this.configService.storagePath, 'accessories')
     const cachedAccessoryPaths = (await readdir(cachedAccessoriesDir))
       .filter(x => x.match(/cachedAccessories\.([A-F,0-9]+)/) || x === 'cachedAccessories' || x === '.cachedAccessories.bak')
