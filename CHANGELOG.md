@@ -15,6 +15,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 ### UI Changes
 
 - show restart modal after installing an already configured plugin
+- add long click modal for lock mechanism + management
 
 ### Homebridge Dependencies
 
