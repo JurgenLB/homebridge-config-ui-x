@@ -24,14 +24,14 @@
       role="group"
       aria-label="Thermostat Mode Control"
     >
-      <button type="button" class="btn mb-0 mx-0 p-3 btn-control" (click)="setTargetMode(0); $event.target.blur()">
+      <button type="button" class="btn mb-0 mx-0 p-3 btn-control" (click)="setTargetMode(3); $event.target.blur()">
         <div class="float-start primary-text">
           <i
             class="fas fa-fw fa-xl"
-            [ngClass]="{ 'fa-check-circle': targetMode === 0, 'fa-blank': targetMode !== 0 }"
+            [ngClass]="{ 'fa-check-circle': targetMode === 3, 'fa-blank': targetMode !== 3 }"
           ></i>
         </div>
-        {{ 'accessories.control.off' | translate }}
+        {{ 'accessories.control.auto' | translate }}
         <div class="float-end"><i class="fas fa-fw fa-xl fa-blank"></i></div>
       </button>
       <button type="button" class="btn mb-0 mx-0 p-3 btn-control" (click)="setTargetMode(1); $event.target.blur()">
@@ -54,22 +54,21 @@
         {{ 'accessories.control.cool' | translate }}
         <div class="float-end"><i class="fas fa-fw fa-xl fa-blank"></i></div>
       </button>
-      <button type="button" class="btn mb-0 mx-0 p-3 btn-control" (click)="setTargetMode(3); $event.target.blur()">
+      <button type="button" class="btn mb-0 mx-0 p-3 btn-control" (click)="setTargetMode(0); $event.target.blur()">
         <div class="float-start primary-text">
           <i
             class="fas fa-fw fa-xl"
-            [ngClass]="{ 'fa-check-circle': targetMode === 3, 'fa-blank': targetMode !== 3 }"
+            [ngClass]="{ 'fa-check-circle': targetMode === 0, 'fa-blank': targetMode !== 0 }"
           ></i>
         </div>
-        {{ 'accessories.control.auto' | translate }}
+        {{ 'accessories.control.off' | translate }}
         <div class="float-end"><i class="fas fa-fw fa-xl fa-blank"></i></div>
       </button>
     </div>
-
-    <h6>
-      {{ 'accessories.control.target' | translate }}: {{ targetTemperature.value | convertTemp | number:'1.0-1' }}&deg;
+    <h6 class="mt-4">
+      {{ 'accessories.control.target_auto' | translate }}: {{ targetTemperature.value | convertTemp | number:'1.0-1'
+      }}&deg;
     </h6>
-
     <nouislider
       [min]="targetTemperature.min"
       [max]="targetTemperature.max"

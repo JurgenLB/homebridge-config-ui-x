@@ -9,6 +9,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 
 import { ServiceTypeX } from '@/app/core/accessories/accessories.interfaces'
 import { ConvertTempPipe } from '@/app/core/pipes/convert-temp.pipe'
+import { SettingsService } from '@/app/core/settings.service'
 
 @Component({
   selector: 'app-thermostat-manage',
@@ -26,6 +27,7 @@ import { ConvertTempPipe } from '@/app/core/pipes/convert-temp.pipe'
 })
 export class ThermostatManageComponent implements OnInit {
   $activeModal = inject(NgbActiveModal)
+  $settings = inject(SettingsService)
 
   @Input() public service: ServiceTypeX
   public targetMode: any
@@ -46,6 +48,12 @@ export class ThermostatManageComponent implements OnInit {
   ngOnInit() {
     this.targetMode = this.service.values.TargetHeatingCoolingState
     this.loadTargetTemperature()
+    setTimeout(() => {
+      const sliderElements = document.querySelectorAll('.noUi-target')
+      sliderElements.forEach((sliderElement: HTMLElement) => {
+        sliderElement.style.background = 'linear-gradient(to right, rgb(80, 80, 179), rgb(173, 216, 230), rgb(255, 185, 120), rgb(139, 90, 60))'
+      })
+    }, 10)
   }
 
   loadTargetTemperature() {
