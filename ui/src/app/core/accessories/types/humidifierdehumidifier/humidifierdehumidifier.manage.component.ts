@@ -39,35 +39,23 @@ export class HumidifierDehumidifierManageComponent implements OnInit {
 
   constructor() {
     this.targetHumidityChanged
-      .pipe(
-        debounceTime(300),
-      )
+      .pipe(debounceTime(300))
       .subscribe(() => {
-        switch (this.targetMode) {
-          case 0:
-            // auto
-            this.service.getCharacteristic('RelativeHumidityHumidifierThreshold').setValue(this.autoHumidity[0])
-            this.service.getCharacteristic('RelativeHumidityDehumidifierThreshold').setValue(this.autoHumidity[1])
-            break
-          case 1:
-            // Humidifier
-            this.service.getCharacteristic('RelativeHumidityHumidifierThreshold').setValue(this.targetHumidifierHumidity)
-            break
-          case 2:
-            // Dehumidifier
-            this.service.getCharacteristic('RelativeHumidityDehumidifierThreshold').setValue(this.targetDehumidifierHumidity)
-            break
+        if (this.RelativeHumidityHumidifierThreshold) {
+          this.service.getCharacteristic('RelativeHumidityHumidifierThreshold').setValue(this.targetHumidifierHumidity)
+        }
+        if (this.RelativeHumidityDehumidifierThreshold) {
+          this.service.getCharacteristic('RelativeHumidityDehumidifierThreshold').setValue(this.targetDehumidifierHumidity)
         }
       })
   }
 
   ngOnInit() {
     this.targetMode = this.service.values.Active ? this.service.values.TargetHumidifierDehumidifierState : 'off'
-
     this.RelativeHumidityDehumidifierThreshold = this.service.getCharacteristic('RelativeHumidityDehumidifierThreshold')
     this.RelativeHumidityHumidifierThreshold = this.service.getCharacteristic('RelativeHumidityHumidifierThreshold')
-
     this.loadTargetHumidity()
+    setTimeout(() => this.loadColour(), 100)
   }
 
   loadTargetHumidity() {
@@ -78,7 +66,6 @@ export class HumidifierDehumidifierManageComponent implements OnInit {
 
   setTargetMode(value: number | 'off') {
     this.targetMode = value
-
     if (this.targetMode === 'off') {
       this.service.getCharacteristic('Active').setValue(0)
     } else {
@@ -87,11 +74,25 @@ export class HumidifierDehumidifierManageComponent implements OnInit {
       }
       this.service.getCharacteristic('TargetHumidifierDehumidifierState').setValue(this.targetMode)
     }
-
     this.loadTargetHumidity()
+    setTimeout(() => this.loadColour(), 300)
   }
 
   onHumidityStateChange() {
+    this.autoHumidity = [this.targetHumidifierHumidity, this.targetDehumidifierHumidity]
     this.targetHumidityChanged.next(undefined)
+  }
+
+  onAutoHumidityStateChange() {
+    this.targetHumidifierHumidity = this.autoHumidity[0]
+    this.targetDehumidifierHumidity = this.autoHumidity[1]
+    this.targetHumidityChanged.next(undefined)
+  }
+
+  loadColour() {
+    const sliderElements = document.querySelectorAll('.noUi-target')
+    sliderElements.forEach((sliderElement: HTMLElement) => {
+      sliderElement.style.background = 'linear-gradient(to left, rgb(80, 80, 179), rgb(173, 216, 230), rgb(255, 185, 120), rgb(139, 90, 60))'
+    })
   }
 }
