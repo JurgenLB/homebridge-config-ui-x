@@ -70,6 +70,13 @@ export class Fanv2ManageComponent implements OnInit {
         step: RotationSpeed.minStep,
         unit: RotationSpeed.unit,
       }
+
+      setTimeout(() => {
+        const sliderElements = document.querySelectorAll('.noUi-target')
+        sliderElements.forEach((sliderElement: HTMLElement) => {
+          sliderElement.style.background = 'linear-gradient(to right, #add8e6, #416bdf)'
+        })
+      }, 10)
     }
   }
 
