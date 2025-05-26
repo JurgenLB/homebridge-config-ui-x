@@ -1,4 +1,6 @@
+import { NgClass } from '@angular/common'
 import { Component, inject, Input, OnInit, output } from '@angular/core'
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap'
 import { JsonSchemaFormModule } from '@ng-formworks/core'
 
 import { JsonSchemaFormPatchDirective } from '@/app/core/directives/json-schema-form-patch.directive'
@@ -11,6 +13,8 @@ import { SettingsService } from '@/app/core/settings.service'
   imports: [
     JsonSchemaFormModule,
     JsonSchemaFormPatchDirective,
+    NgbAlert,
+    NgClass,
   ],
 })
 export class SchemaFormComponent implements OnInit {
@@ -18,12 +22,21 @@ export class SchemaFormComponent implements OnInit {
 
   @Input() configSchema: any
   @Input() data: any
+  @Input() strictValidation: boolean = false
   readonly dataChange = output()
   readonly dataChanged = output()
   readonly isValid = output()
 
   public currentData: any
   public language: string = 'en'
+  public validationErrorList: {
+    instancePath: string
+    keyword: string
+    message: string
+    params: any
+    schemaPath: string
+  }[] = []
+
   private availableLanguages = ['de', 'en', 'es', 'fr', 'it', 'pt', 'zh']
 
   public jsonFormOptions = {
@@ -55,8 +68,6 @@ export class SchemaFormComponent implements OnInit {
   }
 
   validationErrors(errors: any[] | null) {
-    if (errors) {
-      errors.forEach(error => console.error(error.instancePath, error.message))
-    }
+    this.validationErrorList = errors || []
   }
 }

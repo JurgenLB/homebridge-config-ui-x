@@ -61,11 +61,12 @@
           </div>
         </div>
         <div ngbAccordionCollapse>
-          <div ngbAccordionBody class="card-body">
+          <div ngbAccordionBody class="card-body mb-4">
             <app-schema-form
               [configSchema]="schema"
               [(data)]="block.config"
               (isValid)="onIsValid($event, i)"
+              [strictValidation]="strictValidation"
             ></app-schema-form>
           </div>
         </div>
@@ -81,6 +82,7 @@
         [configSchema]="schema"
         [(data)]="pluginConfig[0].config"
         (isValid)="onIsValid($event, 0)"
+        [strictValidation]="strictValidation"
       ></app-schema-form>
       @if (plugin.name==='homebridge-deconz') {
       <app-homebridge-deconz></app-homebridge-deconz>
