@@ -15,5 +15,20 @@
     class="ng-bs5-validate"
   >
   </json-schema-form>
-  }
+
+  @if (validationErrorList.length) {
+  <ngb-alert type="error" [dismissible]="false" class="mb-0">
+    <ul class="mb-0 text-start">
+      @for (error of validationErrorList; let i = $index; track error) {
+      <li
+        [ngClass]="{
+          'mt-3': i > 0 && error.instancePath !== validationErrorList[i - 1].instancePath,
+          }"
+      >
+        <code>{{ error.instancePath }}</code> - {{ error.message }}
+      </li>
+      }
+    </ul>
+  </ngb-alert>
+  } }
 </ng-container>
