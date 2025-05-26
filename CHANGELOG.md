@@ -17,6 +17,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 ### UI Changes
 
 - improvements to various accessory tiles and modals
+- fix occasional issue in backup/restore, revert recent change
 
 ### Homebridge Dependencies
 
