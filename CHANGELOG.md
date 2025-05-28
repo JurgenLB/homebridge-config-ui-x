@@ -21,6 +21,10 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - improvements to plugin config validation
   - use `ajv-keywords` to allow validation of unique properties in arrays
 
+### Other Changes
+
+- upgrade to angular `v20`
+
 ### Homebridge Dependencies
 
 - `@homebridge/hap-client` @ `v2.2.0`
