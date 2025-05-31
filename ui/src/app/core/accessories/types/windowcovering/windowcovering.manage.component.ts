@@ -9,7 +9,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { ServiceTypeX } from '@/app/core/accessories/accessories.interfaces'
 
 @Component({
-  selector: 'app-windowcovering-manage',
   templateUrl: './windowcovering.manage.component.html',
   styleUrls: ['./windowcovering.component.scss'],
   standalone: true,

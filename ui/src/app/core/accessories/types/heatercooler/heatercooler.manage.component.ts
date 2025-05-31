@@ -14,7 +14,6 @@ import { ConvertTempPipe } from '@/app/core/pipes/convert-temp.pipe'
 import { SettingsService } from '@/app/core/settings.service'
 
 @Component({
-  selector: 'app-heatercooler-manage',
   templateUrl: './heatercooler.manage.component.html',
   styleUrls: ['./heatercooler.component.scss'],
   standalone: true,

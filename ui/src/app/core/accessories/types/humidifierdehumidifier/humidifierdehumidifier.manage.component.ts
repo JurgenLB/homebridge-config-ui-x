@@ -12,7 +12,6 @@ import { debounceTime } from 'rxjs/operators'
 import { ServiceTypeX } from '@/app/core/accessories/accessories.interfaces'
 
 @Component({
-  selector: 'app-humidifierdehumidifier-manage',
   templateUrl: './humidifierdehumidifier.manage.component.html',
   styleUrls: ['./humidifierdehumidifier.component.scss'],
   standalone: true,

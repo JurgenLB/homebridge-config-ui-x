@@ -10,7 +10,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { ServiceTypeX } from '@/app/core/accessories/accessories.interfaces'
 
 @Component({
-  selector: 'app-fanv2-manage',
   templateUrl: './fanv2.manage.component.html',
   standalone: true,
   imports: [

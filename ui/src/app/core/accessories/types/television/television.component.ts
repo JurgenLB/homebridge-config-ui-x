@@ -1,9 +1,11 @@
 import { NgClass } from '@angular/common'
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, inject, Input, OnInit } from '@angular/core'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { TranslatePipe } from '@ngx-translate/core'
 import { InlineSVGModule } from 'ng-inline-svg-2'
 
 import { ServiceTypeX } from '@/app/core/accessories/accessories.interfaces'
+import { TelevisionManageComponent } from '@/app/core/accessories/types/television/television.manage.component'
 import { LongClickDirective } from '@/app/core/directives/longclick.directive'
 
 @Component({
@@ -18,8 +20,10 @@ import { LongClickDirective } from '@/app/core/directives/longclick.directive'
   ],
 })
 export class TelevisionComponent implements OnInit {
+  private $modal = inject(NgbModal)
+
   @Input() public service: ServiceTypeX
-  public channelList = {}
+  public channelList: Record<number, string> = {}
 
   constructor() {}
 
@@ -32,5 +36,15 @@ export class TelevisionComponent implements OnInit {
 
   onClick() {
     this.service.getCharacteristic('Active').setValue(this.service.values.Active ? 0 : 1)
+  }
+
+  onLongClick() {
+    if ('Active' in this.service.values || Object.keys(this.channelList).length) {
+      const ref = this.$modal.open(TelevisionManageComponent, {
+        size: 'md',
+      })
+      ref.componentInstance.service = this.service
+      ref.componentInstance.inputList = this.channelList
+    }
   }
 }

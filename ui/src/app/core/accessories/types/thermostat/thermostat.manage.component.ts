@@ -14,7 +14,6 @@ import { ConvertTempPipe } from '@/app/core/pipes/convert-temp.pipe'
 import { SettingsService } from '@/app/core/settings.service'
 
 @Component({
-  selector: 'app-thermostat-manage',
   templateUrl: './thermostat.manage.component.html',
   styleUrls: ['./thermostat.component.scss'],
   standalone: true,
