@@ -10,7 +10,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { ServiceTypeX } from '@/app/core/accessories/accessories.interfaces'
 
 @Component({
-  selector: 'app-airpurifier-manage',
   templateUrl: './airpurifier.manage.component.html',
   styleUrls: ['./airpurifier.component.scss'],
   standalone: true,

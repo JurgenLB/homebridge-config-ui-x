@@ -9,7 +9,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { ServiceTypeX } from '@/app/core/accessories/accessories.interfaces'
 
 @Component({
-  selector: 'app-window-manage',
   templateUrl: './window.manage.component.html',
   styleUrls: ['./window.component.scss'],
   standalone: true,
