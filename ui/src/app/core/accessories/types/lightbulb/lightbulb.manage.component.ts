@@ -24,12 +24,11 @@ export class LightbulbManageComponent implements OnInit {
   $activeModal = inject(NgbActiveModal)
 
   @Input() public service: ServiceTypeX
+
   public targetMode: any
-
   public targetBrightness: any
-  public targetBrightnessChanged: Subject<string> = new Subject<string>()
-
   public targetColorTemperature: any
+  public targetBrightnessChanged: Subject<string> = new Subject<string>()
   public targetColorTemperatureChanged: Subject<string> = new Subject<string>()
 
   constructor() {
@@ -41,7 +40,7 @@ export class LightbulbManageComponent implements OnInit {
       .subscribe(() => {
         this.service.getCharacteristic('Brightness').setValue(this.targetBrightness.value)
 
-        // Turn bulb on or off when brightness is adjusted
+        // Turn the bulb on or off when brightness is adjusted
         if (this.targetBrightness.value && !this.service.values.On) {
           this.targetMode = true
           this.service.getCharacteristic('On').setValue(this.targetMode)
@@ -63,14 +62,12 @@ export class LightbulbManageComponent implements OnInit {
 
   ngOnInit() {
     this.targetMode = this.service.values.On
-
     this.loadTargetBrightness()
     this.loadTargetColorTemperature()
   }
 
   loadTargetBrightness() {
     const TargetBrightness = this.service.getCharacteristic('Brightness')
-
     if (TargetBrightness) {
       this.targetBrightness = {
         value: TargetBrightness.value,
@@ -78,7 +75,6 @@ export class LightbulbManageComponent implements OnInit {
         max: TargetBrightness.maxValue,
         step: TargetBrightness.minStep,
       }
-
       setTimeout(() => {
         const sliderElement = document.querySelectorAll('.noUi-target')[0] as HTMLElement
         if (sliderElement) {
@@ -90,7 +86,6 @@ export class LightbulbManageComponent implements OnInit {
 
   loadTargetColorTemperature() {
     const TargetColorTemperature = this.service.getCharacteristic('ColorTemperature')
-
     if (TargetColorTemperature) {
       // Here, the min and max are switched because mired and kelvin are inversely related
       this.targetColorTemperature = {
@@ -99,7 +94,6 @@ export class LightbulbManageComponent implements OnInit {
         max: this.miredToKelvin(TargetColorTemperature.minValue),
         step: TargetColorTemperature.minStep,
       }
-
       setTimeout(() => {
         const minRgb = this.kelvinToRgb(this.targetColorTemperature.min)
         const maxRgb = this.kelvinToRgb(this.targetColorTemperature.max)
@@ -117,7 +111,7 @@ export class LightbulbManageComponent implements OnInit {
 
     // Set the brightness to 100% if on 0% when turned on
     if (this.targetMode && this.targetBrightness && !this.targetBrightness.value) {
-      this.targetBrightness.value = 100
+      this.targetBrightness.value = this.service.getCharacteristic('Brightness').maxValue
     }
   }
 
