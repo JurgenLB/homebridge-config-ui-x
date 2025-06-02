@@ -1,9 +1,12 @@
+import type { MultipartFile } from '@fastify/multipart'
 import type { Systeminformation } from 'systeminformation'
 
 import { Buffer } from 'node:buffer'
 import { exec, spawn } from 'node:child_process'
-import { join, resolve } from 'node:path'
+import { extname, join, resolve } from 'node:path'
 import process from 'node:process'
+import { pipeline } from 'node:stream'
+import { promisify } from 'node:util'
 
 import { Categories } from '@homebridge/hap-client/dist/hap-types'
 import {
@@ -14,6 +17,7 @@ import {
   ServiceUnavailableException,
 } from '@nestjs/common'
 import {
+  createWriteStream,
   pathExists,
   readdir,
   readJson,
@@ -31,6 +35,8 @@ import { Logger } from '../../core/logger/logger.service'
 import { AccessoriesService } from '../accessories/accessories.service'
 import { ConfigEditorService } from '../config-editor/config-editor.service'
 import { HomebridgeMdnsSettingDto } from './server.dto'
+
+const pump = promisify(pipeline)
 
 @Injectable()
 export class ServerService {
@@ -700,5 +706,28 @@ export class ServerService {
         return res(result)
       })
     })
+  }
+
+  /**
+   * Upload and set a new wallpaper.
+   * File upload handler
+   */
+  async uploadWallpaper(data: MultipartFile) {
+    // Get the config file and find the UI config block
+    const configFile = await this.configEditorService.getConfigFile()
+    const uiConfigBlock = configFile.platforms.find(x => x.platform === 'config')
+
+    if (uiConfigBlock) {
+      // Save the uploaded image file to the storage path
+      const fileExtension = extname(data.filename)
+      const targetPath = join(this.configService.storagePath, `ui-wallpaper${fileExtension}`)
+      const writeStream = createWriteStream(targetPath)
+      await pump(data.file, writeStream)
+
+      // Update the config file with the new wallpaper path
+      uiConfigBlock.loginWallpaper = resolve(this.configService.storagePath, `ui-wallpaper${fileExtension}`)
+      await this.configEditorService.updateConfigFile(configFile)
+      this.logger.log('Wallpaper uploaded and set in the config file.')
+    }
   }
 }
