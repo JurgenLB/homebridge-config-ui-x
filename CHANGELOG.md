@@ -19,6 +19,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - auto restart after version change of hb or ui
 - move login/log retention settings from ui advanced settings to settings page
 - redesigned setup wizard page
+- on uninstall plugin, only offer to remove config when exists
 
 ### Homebridge Dependencies
 
