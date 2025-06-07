@@ -90,10 +90,12 @@ export class ConfigService {
     restart?: string
     lang?: string
     log?: {
-      method: 'file' | 'custom' | 'systemd' | 'native'
+      method?: 'file' | 'custom' | 'systemd' | 'native'
       command?: string
       path?: string
       service?: string
+      maxSize?: number
+      truncateSize?: number
     }
     ssl?: {
       key?: string
@@ -209,6 +211,7 @@ export class ConfigService {
         setupWizardComplete: this.setupWizardComplete,
       },
       formAuth: Boolean(this.ui.auth !== 'none'),
+      sessionTimeout: this.ui.sessionTimeout || 28800,
       lightingMode: this.ui.lightingMode || 'auto',
       serverTimestamp: new Date().toISOString(),
       theme: this.ui.theme || 'orange',
@@ -235,6 +238,10 @@ export class ConfigService {
         runningOnRaspberryPi: this.runningOnRaspberryPi,
         temperatureUnits: this.ui.tempUnits || 'c',
         usePnpm: this.usePnpm,
+        log: {
+          maxSize: this.ui.log?.maxSize,
+          truncateSize: this.ui.log?.truncateSize,
+        },
       },
       wallpaper: this.ui.wallpaper,
     }
@@ -287,6 +294,8 @@ export class ConfigService {
     this.ui.log = {
       method: 'file',
       path: '/homebridge/logs/homebridge.log',
+      maxSize: this.ui.log?.maxSize,
+      truncateSize: this.ui.log?.truncateSize,
     }
 
     // These options can be overridden using the config.json file
@@ -308,6 +317,8 @@ export class ConfigService {
     this.ui.log = {
       method: 'native',
       path: resolve(this.storagePath, 'homebridge.log'),
+      maxSize: this.ui.log?.maxSize,
+      truncateSize: this.ui.log?.truncateSize,
     }
   }
 
