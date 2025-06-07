@@ -42,6 +42,7 @@ interface EnvInterface {
 interface AppSettingsInterface {
   env: EnvInterface
   formAuth: boolean
+  sessionTimeout: number
   theme: string
   lightingMode: 'auto' | 'light' | 'dark'
   menuMode: 'default' | 'freeze'
@@ -60,6 +61,7 @@ export class SettingsService {
 
   public env: EnvInterface = {} as EnvInterface
   public formAuth = true
+  public sessionTimeout = 28800
   public uiVersion: string
   public theme: string
   public lightingMode: 'auto' | 'light' | 'dark'
@@ -101,6 +103,7 @@ export class SettingsService {
   async getAppSettings() {
     const data = await firstValueFrom(this.$api.get('/auth/settings')) as AppSettingsInterface
     this.formAuth = data.formAuth
+    this.sessionTimeout = data.sessionTimeout
     this.env = data.env
     this.lightingMode = data.lightingMode
     this.wallpaper = data.wallpaper
@@ -188,7 +191,11 @@ export class SettingsService {
     this.env.lang = lang
   }
 
-  setEnvItem(key: string, value: any) {
+  setItem(key: keyof AppSettingsInterface, value: any) {
+    this[key] = value
+  }
+
+  setEnvItem<K extends keyof EnvInterface>(key: K, value: EnvInterface[K]) {
     this.env[key] = value
   }
 

@@ -1,6 +1,6 @@
 <h3 class="primary-text m-0">{{ 'menu.settings.title' | translate }}</h3>
 
-<!-- GENERAL SETTINGS - ALL USERS -->
+<!-- GENERAL SETTINGS -->
 <div class="my-4">
   <div
     role="button"
@@ -78,7 +78,7 @@
   }
 </div>
 
-<!-- DISPLAY SETTINGS - ALL USERS -->
+<!-- DISPLAY SETTINGS -->
 <div class="my-4">
   <div
     role="button"
@@ -214,8 +214,7 @@
   }
 </div>
 
-<!-- STARTUP/ENV OPTIONS - SERVICE MODE/DOCKER USERS -->
-@if ($settings.env.serviceMode || $settings.env.runningInDocker) {
+<!-- STARTUP/ENV OPTIONS -->
 <form class="my-4" novalidate [formGroup]="serviceForm">
   <div
     role="button"
@@ -232,7 +231,40 @@
   </div>
   @if (showFields.startup) {
   <ul class="list-group list-group-box mb-4 mx-0" id="fieldsStartup">
-    @if ($settings.env.serviceMode) {
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>
+        {{ 'settings.startup.auth' | translate }}<br />
+        <small class="grey-text pe-2"> {{ 'settings.startup.auth_desc' | translate }} </small>
+      </span>
+      <input
+        type="checkbox"
+        class="rendux-input"
+        id="homebridgeDebugMode"
+        [formControl]="uiAuthFormControl"
+        [attr.aria-label]="'settings.startup.auth' | translate"
+      />
+      <label for="homebridgeDebugMode" class="rendux-label ms-3" style="min-width: 50px"></label>
+    </li>
+    @if (uiAuthFormControl.value) {
+    <li class="list-group-item d-block d-md-flex justify-content-between align-items-center">
+      <span>
+        {{ 'settings.startup.session' | translate }}<br />
+        <small class="grey-text pe-2">{{ 'settings.startup.session_desc' | translate }}</small>
+      </span>
+      <div class="my-3 my-md-0 ps-0 ps-md-5 w-auto">
+        <input
+          class="form-control custom-input resp-input"
+          type="number"
+          min="600"
+          max="86400000"
+          placeholder="28800"
+          [formControl]="uiSessionTimeoutFormControl"
+          [attr.aria-label]="('settings.startup.session' | translate)"
+          [ngClass]="{ 'is-invalid': isInvalidUiSessionTimeout }"
+        />
+      </div>
+    </li>
+    } @if ($settings.env.serviceMode) {
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <span>
         {{ 'settings.startup.debug' | translate }} <code>-D</code><br />
@@ -249,7 +281,6 @@
       />
       <label for="homebridgeDebugMode" class="rendux-label ms-3" style="min-width: 50px"></label>
     </li>
-    } @if ($settings.env.serviceMode) {
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <span>
         {{ 'settings.startup.insecure' | translate }} <code>-I</code><br />
@@ -264,7 +295,6 @@
       />
       <label for="homebridgeInsecureMode" class="rendux-label ms-3" style="min-width: 50px"></label>
     </li>
-    } @if ($settings.env.serviceMode) {
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <span>
         {{ 'settings.startup.keep_accessories' | translate }} <code>-K</code><br />
@@ -279,7 +309,6 @@
       />
       <label for="homebridgeKeepOrphans" class="rendux-label ms-3" style="min-width: 50px"></label>
     </li>
-    } @if ($settings.env.serviceMode) {
     <li class="list-group-item d-block d-md-flex justify-content-between align-items-center">
       <span>
         <span class="font-monospace">DEBUG</span><br />
@@ -297,7 +326,6 @@
         />
       </div>
     </li>
-    } @if ($settings.env.serviceMode) {
     <li class="list-group-item d-block d-md-flex justify-content-between align-items-center">
       <span>
         <span class="font-monospace">NODE_OPTIONS</span><br />
@@ -342,9 +370,8 @@
   </ul>
   }
 </form>
-}
 
-<!-- NETWORK SETTINGS - ALL USERS -->
+<!-- NETWORK SETTINGS -->
 <form class="my-4" novalidate [formGroup]="uiSettingsForm">
   <div
     role="button"
@@ -467,7 +494,7 @@
   }
 </form>
 
-<!-- CACHE SETTINGS - SERVICE MODE USERS ONLY -->
+<!-- CACHE SETTINGS -->
 @if ($settings.env.serviceMode) {
 <div class="my-4">
   <div
@@ -534,7 +561,7 @@
 </div>
 }
 
-<!-- RESET SETTINGS - ALL USERS -->
+<!-- RESET SETTINGS -->
 <div class="my-4">
   <div
     role="button"

@@ -67,6 +67,7 @@ export class SettingsComponent implements OnInit {
   public isInvalidHbPort = false
   public isInvalidHbName = false
   public isInvalidHbUiPort = false
+  public isInvalidUiSessionTimeout = false
 
   public serviceForm = new FormGroup({
     HOMEBRIDGE_DEBUG: new FormControl(false),
@@ -87,6 +88,8 @@ export class SettingsComponent implements OnInit {
   public bridgeNetworkAdapters: string[] = []
   public hbPortFormControl = new FormControl(0)
   public hbNameFormControl = new FormControl('')
+  public uiAuthFormControl = new UntypedFormControl(true)
+  public uiSessionTimeoutFormControl = new FormControl(28800)
   public isHbV2 = false
   public showFields = {
     general: true,
@@ -106,6 +109,10 @@ export class SettingsComponent implements OnInit {
     this.hbNameFormControl.patchValue(this.$settings.env.homebridgeInstanceName)
     this.hbNameFormControl.valueChanges.subscribe((name: string) => this.setHomebridgeName(name))
     this.originalHbName = this.$settings.env.homebridgeInstanceName
+    this.uiAuthFormControl.patchValue(this.$settings.formAuth)
+    this.uiAuthFormControl.valueChanges.subscribe((auth: boolean) => this.saveUiSettingChange('auth', auth))
+    this.uiSessionTimeoutFormControl.patchValue(this.$settings.sessionTimeout)
+    this.uiSessionTimeoutFormControl.valueChanges.subscribe((value: number) => this.saveUiSettingChange('sessionTimeout', value))
 
     this.initUiSettingsForm()
     this.initNetworkingOptions()
@@ -176,6 +183,17 @@ export class SettingsComponent implements OnInit {
         this.$settings.setEnvItem('port', value)
         this.isInvalidHbUiPort = false
         break
+      case 'auth':
+        this.$settings.setItem('formAuth', value)
+        value = value ? 'form' : 'none'
+        break
+      case 'sessionTimeout':
+        if (!value || typeof value !== 'number' || value < 600 || value > 86400000 || Number.isInteger(value) === false) {
+          this.isInvalidUiSessionTimeout = true
+          return
+        }
+        this.$settings.setItem('sessionTimeout', value)
+        this.isInvalidUiSessionTimeout = false
     }
 
     // Save the new property to the config file

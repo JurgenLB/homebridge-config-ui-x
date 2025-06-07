@@ -209,6 +209,7 @@ export class ConfigService {
         setupWizardComplete: this.setupWizardComplete,
       },
       formAuth: Boolean(this.ui.auth !== 'none'),
+      sessionTimeout: this.ui.sessionTimeout || 28800,
       lightingMode: this.ui.lightingMode || 'auto',
       serverTimestamp: new Date().toISOString(),
       theme: this.ui.theme || 'orange',
