@@ -17,6 +17,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 ### UI Changes
 
 - auto restart after version change of hb or ui
+- add support for dark mode switching with custom plugin uis (@NorthernMan54)
 
 ### Homebridge Dependencies
 
