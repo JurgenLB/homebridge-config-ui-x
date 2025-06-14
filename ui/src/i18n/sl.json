@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "Če imate težave s povezovanjem z Homebridgeom, poskusite uporabiti enega od nadomestnih oglaševalcev mDNS.",
   "settings.mdns_advertiser_not_connected": "Not Connected",
   "settings.mdns_advertiser_rec": "recommended",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "Ime vmesnika",
   "settings.network.label_ip_address": "IP naslov",
   "settings.network.message_network_interface": "Če ni izbran noben omrežni vmesnik, bo Homebridge poskušal samodejno določiti, katere vmesnike oglaševati.",

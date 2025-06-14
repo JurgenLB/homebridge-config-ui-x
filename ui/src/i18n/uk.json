@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "Якщо у Вас виникли проблеми з підключенням до Homebridge, спробуйте скористатися одним із альтернативних рекламвстів mDNS.",
   "settings.mdns_advertiser_not_connected": "Не з'єднано",
   "settings.mdns_advertiser_rec": "рекомендований",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "Назва інтерфейсу",
   "settings.network.label_ip_address": "IP Адреса",
   "settings.network.message_network_interface": "Якщо не обрано жодного мережевого інтерфейсу, Homebridge спробує автоматично визначити, які інтерфейси рекламувати.",

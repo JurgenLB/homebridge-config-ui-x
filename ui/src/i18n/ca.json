@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "Si tens problemes per connectar a Homebridge, prova d’utilitzar un mètode de difusió mDNS alternatiu.",
   "settings.mdns_advertiser_not_connected": "Not Connected",
   "settings.mdns_advertiser_rec": "recommended",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "Nom de la interfície",
   "settings.network.label_ip_address": "Adreça IP",
   "settings.network.message_network_interface": "Si no es selecciona cap interfície de xarxa, Homebridge intentarà determinar automàticament quines interfícies difondre.",

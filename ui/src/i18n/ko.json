@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "Homebridge를 HomeKit에 연결하는 데 문제가 있는 경우(홈 앱에서 모든 액세서리가 '응답 없음'으로 표시되는 경우), 다른 mDNS 광고자를 사용해 보세요.",
   "settings.mdns_advertiser_not_connected": "연결되지 않음",
   "settings.mdns_advertiser_rec": "권장",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "인터페이스 이름",
   "settings.network.label_ip_address": "IP 주소",
   "settings.network.message_network_interface": "네트워크 인터페이스가 선택되지 않으면, Homebridge는 자동으로 발송할 인터페이스 결정합니다.",

@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "Si experimentas problemas para conectarte a Homebridge, prueba con alguna de las alternativas de difusión mDNS.",
   "settings.mdns_advertiser_not_connected": "No Conectado",
   "settings.mdns_advertiser_rec": "recomendado",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "Nombre de la Interfaz",
   "settings.network.label_ip_address": "Dirección IP",
   "settings.network.message_network_interface": "Si no se seleccionan interfaces de red, Homebridge intentará determinar automáticamente qué interfaces difundir.",

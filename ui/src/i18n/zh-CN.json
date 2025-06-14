@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "如果你无法链接到 Homebridge, 请尝试更换 mDNS advertisers.",
   "settings.mdns_advertiser_not_connected": "Not Connected",
   "settings.mdns_advertiser_rec": "recommended",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "端口名称",
   "settings.network.label_ip_address": "IP 地址",
   "settings.network.message_network_interface": "如果没有网络端口被选中， Homebridge 将会尝试自动搜索端口并广播。",

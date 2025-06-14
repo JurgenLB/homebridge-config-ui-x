@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "Если у вас возникают проблемы с подключением Homebridge к HomeKit (все аксессуары отображаются как 'Нет ответа' в приложении Дом), попробуйте использовать альтернативного рекламодателя mDNS.",
   "settings.mdns_advertiser_not_connected": "Нет подключения",
   "settings.mdns_advertiser_rec": "рекомендуется",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "Имя интерфейса",
   "settings.network.label_ip_address": "IP-адрес",
   "settings.network.message_network_interface": "Если ни один сетевой интерфейс не выбран, Homebridge попытается определить интерфейсы для рекламы автоматически.",

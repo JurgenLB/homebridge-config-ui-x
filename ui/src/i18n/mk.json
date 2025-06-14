@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "If you have trouble connecting Homebridge to HomeKit (all accessories showing 'No Response' in the Home app), try using one of the alternate mDNS advertisers.",
   "settings.mdns_advertiser_not_connected": "Not Connected",
   "settings.mdns_advertiser_rec": "recommended",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "Име на интерфејс",
   "settings.network.label_ip_address": "IP адреса",
   "settings.network.message_network_interface": "Ако немате одбрано ниеден мрежен интерфејс, Homebridge ќе проба автоматски да одреди на кои интерфејси да испраќа advertisements.",

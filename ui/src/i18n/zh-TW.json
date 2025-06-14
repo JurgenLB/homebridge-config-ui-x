@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "假如於連線 Homebridge 時遇到問題，請試著使用替代的 mDNS Advertiser。",
   "settings.mdns_advertiser_not_connected": "Not Connected",
   "settings.mdns_advertiser_rec": "recommended",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "介面名稱",
   "settings.network.label_ip_address": "IP 位址",
   "settings.network.message_network_interface": "如果沒有選擇網路介面，Homebridge 將會自動偵測所要使用的網路介面。",

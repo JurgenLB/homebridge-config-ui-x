@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "Jos sinulla on ongelmia Homebridgen yhdistämisessä HomeKitiin (kaikki lisävarusteet näyttävät Home-sovelluksessa No Response), yritä käyttää jotakin vaihtoehtoista mDNS-mainostajaa.",
   "settings.mdns_advertiser_not_connected": "Ei yhdistetty",
   "settings.mdns_advertiser_rec": "suositeltava",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "Sovittimen nimi",
   "settings.network.label_ip_address": "IP osoite",
   "settings.network.message_network_interface": "Jos verkkosovitinta ei valita, Homebridge yrittää automaattisesti valita sovittimen jota käyttää.",

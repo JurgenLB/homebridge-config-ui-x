@@ -422,6 +422,7 @@
   "settings.mdns_advertiser_help": "Om du har problem med att ansluta till Homebridge, prova att använda någon av de alternativa mDNS-annonsörerna.",
   "settings.mdns_advertiser_not_connected": "Ej ansluten",
   "settings.mdns_advertiser_rec": "recommended",
+  "settings.name": "Homebridge Name",
   "settings.network.label_interface_name": "Gränssnittsnamn",
   "settings.network.label_ip_address": "IP-adress",
   "settings.network.message_network_interface": "Om inga nätverksgränssnitt väljs kommer Homebridge att försöka avgöra vilka gränssnitt som ska annonseras automatiskt.",
