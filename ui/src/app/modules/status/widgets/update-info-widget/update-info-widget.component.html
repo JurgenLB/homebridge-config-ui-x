@@ -129,26 +129,37 @@
         <div class="hb-status-item d-flex flex-row py-1" style="min-width: 200px; flex: 1 0 auto">
           <div class="d-flex ps-3 py-1">
             <div class="mb-0 d-flex align-items-center">
-              @if (!homebridgePluginStatusDone) {
+              @if (!nodejsStatusDone) {
               <i class="fas fa-fw fa-lg fa-cog fa-spin primary-text"></i>
-              } @if (homebridgePluginStatusDone && homebridgePluginStatus.length) {
+              } @if (nodejsStatusDone) { @if (widget.hideNodeInfo) {
+              <i class="fas fa-fw fa-lg fa-circle green-text"></i>
+              } @if (!widget.hideNodeInfo) { @if (nodejsInfo.updateAvailable) {
               <i class="fas fa-fw fa-lg fa-arrow-alt-circle-up orange-text"></i>
-              } @if (homebridgePluginStatusDone && !homebridgePluginStatus.length) {
+              } @if (nodejsInfo.showNodeUnsupportedWarning && !nodejsInfo.updateAvailable) {
+              <i class="fas fa-fw fa-lg fa-exclamation-circle orange-text"></i>
+              } @if (!nodejsInfo.updateAvailable && !nodejsInfo.showNodeUnsupportedWarning) {
               <i class="fas fa-fw fa-lg fa-check-circle green-text"></i>
-              }
+              } } }
             </div>
             <div class="align-self-center px-3">
-              <a href="javascript:void(0)" routerLink="/plugins" class="card-link card-link-title">
-                {{ 'menu.label_plugins' | translate }}
-              </a>
+              Node.js@if (widget.showNpmVersion && nodejsInfo.npmVersion) { &middot; npm }
               <br />
-              @if (!homebridgePluginStatusDone) {
+              @if (!nodejsStatusDone) {
               <span class="grey-text small">{{ 'status.homebridge.checking' | translate }}</span>
-              } @if (homebridgePluginStatusDone) { @if (!homebridgePluginStatus.length) {
-              <span class="grey-text small">{{ 'status.homebridge.up_to_date' | translate }}</span>
-              } @if (homebridgePluginStatus.length) {
-              <a routerLink="/plugins" class="primary-text small">{{ 'plugins.button_update' | translate }}</a>
-              } }
+              } @if (nodejsStatusDone) {
+              <span class="grey-text small"
+                >{{ serverInfo.nodeVersion }}@if (widget.showNpmVersion && nodejsInfo.npmVersion) { &middot; {{
+                nodejsInfo.npmVersion }} }</span
+              >
+              @if (!widget.hideNodeInfo) { @if (nodejsInfo.updateAvailable) { &middot;
+              <a href="javascript:void(0)" (click)="nodeUpdateModal()" class="primary-text small">
+                {{'plugins.button_update' | translate }}
+              </a>
+              } @if (nodejsInfo.showNodeUnsupportedWarning && !nodejsInfo.updateAvailable) { &middot;
+              <a href="javascript:void(0)" (click)="nodeUnsupportedModal()" class="primary-text small">
+                {{ 'status.widget.info.node_unsupp' | translate }}
+              </a>
+              } } }
             </div>
           </div>
         </div>
