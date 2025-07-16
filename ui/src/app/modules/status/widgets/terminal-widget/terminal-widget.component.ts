@@ -83,10 +83,12 @@ export class TerminalWidgetComponent implements OnInit, AfterViewInit, OnDestroy
                 background: 'transparent',
                 foreground: '#2b2b2b',
                 cursor: '#d2d2d2',
+                selectionBackground: '#d2d2d2',
               },
         allowTransparency: true,
         fontSize: this.fontSize,
         fontWeight: this.fontWeight,
+        allowProposedApi: true,
       }
 
       // If terminal is already ready, use reconnectTerminal for proper session management
@@ -96,7 +98,7 @@ export class TerminalWidgetComponent implements OnInit, AfterViewInit, OnDestroy
       }
 
       // Start or reconnect to the terminal
-      if (this.$settings.terminalPersistence && this.$terminal.hasActiveSession()) {
+      if (this.$settings.env.terminal?.persistence && this.$terminal.hasActiveSession()) {
         this.$terminal.reconnectTerminal(this.termTarget(), terminalOptions, this.resizeEvent)
       } else {
         this.$terminal.startTerminal(this.termTarget(), terminalOptions, this.resizeEvent)
@@ -132,8 +134,10 @@ export class TerminalWidgetComponent implements OnInit, AfterViewInit, OnDestroy
                 background: 'transparent',
                 foreground: '#2b2b2b',
                 cursor: '#d2d2d2',
+                selectionBackground: '#d2d2d2',
               }
           this.$terminal.term.options.allowTransparency = true
+          this.$terminal.term.options.allowProposedApi = true
           changed = true
         }
 
@@ -190,7 +194,7 @@ export class TerminalWidgetComponent implements OnInit, AfterViewInit, OnDestroy
 
     // Use persistence setting to determine behavior
     // NOTE: This is essential for proper terminal lifecycle management
-    if (this.$settings.terminalPersistence) {
+    if (this.$settings.env.terminal?.persistence) {
       // Detach the terminal but keep the session alive
       this.$terminal.detachTerminal()
     } else {
