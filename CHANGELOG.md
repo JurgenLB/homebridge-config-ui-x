@@ -8,6 +8,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 
 - json config editor to offer child bridge restarts where possible
 - improvements to the restore config file modal
+- terminal session persistence and macos shell optimization (@seidnerj)
 
 ### Other Changes
 
