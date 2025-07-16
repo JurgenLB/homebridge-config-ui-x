@@ -25,6 +25,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - added support icon and modal on users page
 - use a new component for support modal footers for suggestions
 - json config editor to offer child bridge restarts where possible
+- terminal session persistence and macos shell optimization (@seidnerj)
 
 ### Other Changes
 
