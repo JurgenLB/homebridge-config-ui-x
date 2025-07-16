@@ -240,8 +240,6 @@
   "platform.linux.server_taking_long_time": "The server is taking a long time to come back online",
   "platform.linux.server_will_power_down": "The server will power down shortly.",
   "platform.linux.shutting_down_server": "Shutting Down Server",
-  "platform.terminal.already_open_message": "The terminal is already open in another tab, only one terminal session can be active at a time.",
-  "platform.terminal.already_open_title": "Terminal already open",
   "platform.terminal.beforeunload_message": "Your terminal session will be terminated. Enable Terminal Session Persistence in Settings to prevent this.",
   "platform.terminal.confirm_navigation_button": "Terminate Session",
   "platform.terminal.confirm_navigation_message": "Navigating away from this page will terminate your current session, all foreground processes will be terminated.<br><br>To avoid this warning, enable <strong>Terminal Session Persistence</strong> in Settings.<br><br>Are you sure you want to terminate your session?",
