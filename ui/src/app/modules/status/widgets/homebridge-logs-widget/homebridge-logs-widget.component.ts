@@ -55,10 +55,12 @@ export class HomebridgeLogsWidgetComponent implements OnInit, OnDestroy {
                   background: '#00000000',
                   foreground: '#2b2b2b',
                   cursor: '#d2d2d2',
+                  selectionBackground: '#d2d2d2',
                 },
           allowTransparency: true,
           fontSize: this.fontSize,
           fontWeight: this.fontWeight,
+          allowProposedApi: true,
         },
         this.resizeEvent,
       )
@@ -93,6 +95,7 @@ export class HomebridgeLogsWidgetComponent implements OnInit, OnDestroy {
                 background: '#00000000',
                 foreground: '#2b2b2b',
                 cursor: '#d2d2d2',
+                selectionBackground: '#d2d2d2',
               }
           this.$log.term.options.allowTransparency = true
           changed = true
