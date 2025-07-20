@@ -54,7 +54,7 @@ export class HomebridgeLogsWidgetComponent implements OnInit, OnDestroy {
               cursor: '#d2d2d2',
               selectionBackground: '#d2d2d2',
             },
-        allowTransparency: this.theme === 'light',
+        allowTransparency: true,
         allowProposedApi: true,
         fontSize: this.fontSize,
         fontWeight: this.fontWeight,
@@ -92,7 +92,7 @@ export class HomebridgeLogsWidgetComponent implements OnInit, OnDestroy {
                 cursor: '#d2d2d2',
                 selectionBackground: '#d2d2d2',
               }
-          this.$log.term.options.allowTransparency = this.theme === 'light'
+          this.$log.term.options.allowTransparency = true
           changed = true
         }
 
