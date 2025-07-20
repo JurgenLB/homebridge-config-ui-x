@@ -5,11 +5,11 @@ import { TranslatePipe } from '@ngx-translate/core'
 import { SupportBannerComponent } from '@/app/core/components/support-banner/support-banner.component'
 
 @Component({
-  templateUrl: './accessory-support.component.html',
+  templateUrl: './config-editor-support.component.html',
   standalone: true,
   imports: [TranslatePipe, SupportBannerComponent],
 })
-export class AccessorySupportComponent {
+export class ConfigEditorSupportComponent {
   private $activeModal = inject(NgbActiveModal)
 
   public dismissModal() {

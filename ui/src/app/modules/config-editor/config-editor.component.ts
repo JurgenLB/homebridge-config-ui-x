@@ -13,6 +13,7 @@ import { RestartHomebridgeComponent } from '@/app/core/components/restart-homebr
 import { MobileDetectService } from '@/app/core/mobile-detect.service'
 import { MonacoEditorService } from '@/app/core/monaco-editor.service'
 import { SettingsService } from '@/app/core/settings.service'
+import { ConfigEditorSupportComponent } from '@/app/modules/config-editor/config-editor-support/config-editor-support.component'
 import { ConfigRestoreComponent } from '@/app/modules/config-editor/config-restore/config.restore.component'
 
 @Component({
@@ -268,6 +269,13 @@ export class ConfigEditorComponent implements OnInit, OnDestroy {
   public onCancelRestore() {
     this.homebridgeConfig = this.originalConfig
     this.originalConfig = ''
+  }
+
+  public openSupport() {
+    this.$modal.open(ConfigEditorSupportComponent, {
+      size: 'lg',
+      backdrop: 'static',
+    })
   }
 
   public ngOnDestroy() {

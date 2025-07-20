@@ -6,7 +6,7 @@
     <div class="col-6 text-end">
       @if (!originalConfig) {
       <button
-        class="btn btn-elegant waves-effect my-0 me-2"
+        class="btn btn-elegant waves-effect my-0 me-2 d-none d-sm-inline-block"
         (click)="onExportConfig()"
         container="body"
         placement="bottom"
@@ -46,7 +46,7 @@
       </button>
       }
       <button
-        class="btn btn-elegant waves-effect my-0 me-0"
+        class="btn btn-elegant waves-effect my-0 me-2"
         (click)="onSave()"
         [disabled]="saveInProgress"
         container="body"
@@ -61,6 +61,14 @@
         } @if (saveInProgress) {
         <i class="fas fa-fw fa-spinner fa-pulse"></i>
         }
+      </button>
+      <button
+        type="button"
+        class="btn btn-elegant my-0 me-0"
+        (click)="openSupport()"
+        [attr.aria-label]="'support.title' | translate"
+      >
+        <i class="fa fa-fw fa-question-circle-o"></i>
       </button>
     </div>
   </div>
