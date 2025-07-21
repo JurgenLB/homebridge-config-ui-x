@@ -30,6 +30,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 
 - remove now unused `standalone.ts` file
 - set the minimum wanted version of node to `v20.19.0`
+- update `ng-inline-svg-2` from `v19` to `v20`
 
 ### Homebridge Dependencies
 
