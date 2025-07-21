@@ -29,6 +29,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 ### Other Changes
 
 - remove now unused `standalone.ts` file
+- set the minimum wanted version of node to `v20.19.0`
 
 ### Homebridge Dependencies
 
