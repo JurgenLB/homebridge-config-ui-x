@@ -1,8 +1,8 @@
 import { NgClass, NgStyle } from '@angular/common'
 import { AfterViewInit, Component, ElementRef, HostListener, inject, Input, OnDestroy, OnInit, viewChild } from '@angular/core'
 import { TranslatePipe } from '@ngx-translate/core'
-import { ITerminalOptions } from '@xterm/xterm'
 import { Subject } from 'rxjs'
+import { ITerminalOptions } from 'xterm'
 
 import { SettingsService } from '@/app/core/settings.service'
 import { TerminalNavigationGuardService } from '@/app/core/terminal-navigation-guard.service'

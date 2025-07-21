@@ -35,9 +35,6 @@
             ],
             "allowedCommonJsDependencies": [
               "@homebridge/hap-client/dist/hap-types",
-              "@xterm/addon-fit",
-              "@xterm/addon-web-links",
-              "@xterm/xterm",
               "ajv",
               "ajv-keywords",
               "dayjs",
@@ -52,7 +49,10 @@
               "mobile-detect",
               "prismjs",
               "qrcode",
-              "semver"
+              "semver",
+              "xterm",
+              "xterm-addon-fit",
+              "xterm-addon-web-links"
             ],
             "aot": false,
             "stylePreprocessorOptions": {
