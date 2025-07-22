@@ -33,6 +33,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - update `ng-inline-svg-2` from `v19` to `v20`
 - update `@homebridge/node-pty-prebuilt-multiarch` to `0.14.1-beta`
 - fix undefined `error.error` instances in various places
+- revert to using angular http `withInterceptorsFromDi`
 
 ### Homebridge Dependencies
 
