@@ -34,7 +34,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 
 ### Homebridge Dependencies
 
-- `@homebridge/hap-client` @ `v3.0.0`
+- `@homebridge/hap-client` @ `v3.1.1`
 - `@homebridge/node-pty-prebuilt-multiarch` @ `v0.13.1`
 - `@homebridge/plugin-ui-utils` @ `v2.1.0`
 
