@@ -17,6 +17,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 ### Other Changes
 
 - update `@homebridge/node-pty-prebuilt-multiarch` to `0.14.1-beta`
+- added `arm` runners to the ui workflows for testing
 
 ### Homebridge Dependencies
 
