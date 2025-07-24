@@ -11,6 +11,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - terminal session persistence and macos shell optimization (#2493) (@seidnerj)
 - small tweaks to persistent terminal integration
 - show/copy user qr code secrets when setting up 2fa
+- fix json schema icons from font awesome update
 
 ### Other Changes
 
