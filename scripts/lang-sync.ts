@@ -18,6 +18,9 @@ const ignoreKeys = [
   'plugins.settings.custom.homebridge-gsh.message_about',
   'plugins.settings.custom.homebridge-gsh.message_account_link_required',
   'plugins.settings.custom.homebridge-gsh.message_homebridge_restart_required',
+  'status.widget.update_node_yes',
+  'status.widget.update_node_no',
+  'status.widget.update_node_unknown',
 ]
 
 async function getAllFiles(dirPath: string, arrayOfFiles: string[] = []): Promise<string[]> {
