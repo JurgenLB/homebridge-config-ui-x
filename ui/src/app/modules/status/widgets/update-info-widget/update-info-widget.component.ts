@@ -13,6 +13,7 @@ import { ManagePluginsService } from '@/app/core/manage-plugins/manage-plugins.s
 import { SettingsService } from '@/app/core/settings.service'
 import { IoNamespace, WsService } from '@/app/core/ws.service'
 import { HbV2ModalComponent } from '@/app/modules/status/widgets/update-info-widget/hb-v2-modal/hb-v2-modal.component'
+import { NodeUpdateModalComponent } from '@/app/modules/status/widgets/update-info-widget/node-update-modal/node-update-modal.component'
 
 interface DockerDetails {
   currentVersion: string | undefined
@@ -110,20 +111,16 @@ export class UpdateInfoWidgetComponent implements OnInit {
   }
 
   public nodeUpdateModal() {
-    const ref = this.$modal.open(InformationComponent, {
+    const ref = this.$modal.open(NodeUpdateModalComponent, {
       size: 'lg',
       backdrop: 'static',
     })
 
-    ref.componentInstance.title = this.$translate.instant('status.widget.info.node_update_title')
-    ref.componentInstance.message = this.$translate.instant('status.widget.info.node_update_message')
-    if (this.serverInfo.homebridgeRunningInSynologyPackage || this.serverInfo.homebridgeRunningInDocker) {
-      ref.componentInstance.message2 = this.$translate.instant('status.widget.info.node_update_message_2')
-    }
-    ref.componentInstance.subtitle = `${this.serverInfo.nodeVersion} &rarr; ${this.nodejsInfo.latestVersion}`
-    ref.componentInstance.ctaButtonLabel = this.$translate.instant('form.button_more_info')
-    ref.componentInstance.faIconClass = 'fab fa-fw fa-node-js primary-text'
-    ref.componentInstance.ctaButtonLink = 'https://github.com/homebridge/homebridge/wiki/How-To-Update-Node.js'
+    ref.componentInstance.nodeVersion = this.serverInfo.nodeVersion
+    ref.componentInstance.latestVersion = this.nodejsInfo.latestVersion
+    ref.componentInstance.homebridgeRunningInSynologyPackage = this.serverInfo.homebridgeRunningInSynologyPackage
+    ref.componentInstance.homebridgeRunningInDocker = this.serverInfo.homebridgeRunningInDocker
+    ref.componentInstance.homebridgePkg = this.homebridgePkg
   }
 
   public nodeUnsupportedModal() {
