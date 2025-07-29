@@ -30,6 +30,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - updated icons: co, co2, smoke + context sensors
 - improvements to garage door icon
 - thermostat accessory: show target slider when available
+- updated icon for door, window and window covering services
 
 ### Other Changes
 
