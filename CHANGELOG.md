@@ -35,6 +35,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - accessory info: show props on characteristic click
 - custom types: expose a switch/outlet as a washing machine
 - credits modal: added new section for translations
+- refreshed icons for fan, television, speaker + filter
 
 ### Other Changes
 
