@@ -33,6 +33,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - updated icon for door, window and window covering services
 - revert back to font-awesome v6 for compatibility
 - accessory info: show props on characteristic click
+- custom types: expose a switch/outlet as a washing machine
 
 ### Other Changes
 
