@@ -36,6 +36,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - custom types: expose a switch/outlet as a washing machine
 - fan icon: updated to the new icon format
 - credits modal: added new section for translations
+- television icon: updated to the new icon format
 
 ### Other Changes
 
